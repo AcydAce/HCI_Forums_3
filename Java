@@ -1,6 +1,17 @@
+const climbingStairs = (cost) => {
+    let Clen = cost.length
+    let k = new Array(Clen).fill(0);
 
+    k[0] = cost[0]
+    k[1] = cost[1]
 
-//(0, 2, 2, 1) min = 0&2 = 2
-//(0, 2, 3, 2) min = 0&3 = 3
-//(10, 15, 20) min = 15 = 15
-//(0, 0, 0, 0, 0, 0) min = 0&0&0 = 0
+    for (let i = 2; i < Clen; i++) {
+        k[i] = cost[i] + Math.min(k[i-1], k[i-2])
+    }
+    return Math.min(...k.slice(-2))
+}
+
+console.log(climbingStairs([0, 2, 2, 1]))
+console.log(climbingStairs([0, 2, 3, 2]))
+console.log(climbingStairs([10, 15, 20]))
+console.log(climbingStairs([0, 0, 0, 0, 0, 0]))
